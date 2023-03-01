@@ -1,34 +1,34 @@
-# 控制指令说明
+## Description of control commands
 
-## 机器人动作指令
+## Robot action instructions
 
-单个指令为一维数组，类型为：`int`，具体如下
+Individual commands are one-dimensional arrays of type: `int`, as follows
 
-|引索|名称|范围|解释|手控按键|
+|fuse|name|range|explanation|hand control button|
 |-|-|-|-|-|
-|0|x|-1~1|-1：后退，0：不动，1：前进|s/w|
-|1|y|-1~1|-1：左移，0：不动，1：右移|q/e|
-|2|rotate|-1~1|底盘，-1：左转，0：不动，1：右转|a/d|
-|3|yaw|-1~1|云台，-1：左转，0：不动，1：右转|b/m|
-|4|shoot|0~1|是否射击，0：否，1：是|space|
-|5|supply|0~1|时候触发补给，0：否，1：是|f|
-|6|shoot_mode|0~1|射击模式，0：单发，1：连发|r|
-|7|auto_aim|0~1|是否启用自瞄，0：否，1：是|n|
+|0|x|-1~1|-1: backward, 0: no movement, 1: forward|s/w|
+|1|y|-1~1|-1: move left, 0: don't move, 1: move right|q/e|
+|2|rotate|-1~1|chassis, -1: left turn, 0: no movement, 1: right turn|a/d|
+|3|yaw|-1~1|head, -1: turn left, 0: don't move, 1: turn right|b/m|
+|4|shoot|0~1|Whether to shoot, 0: no, 1: yes|space|
+|5|supply|0~1|When to trigger resupply, 0: No, 1: Yes|f|
+|6|shoot_mode|0~1|Shoot mode, 0: single shot, 1: burst|r|
+|7|auto_aim|0~1|Whether to enable self-targeting, 0: No, 1: Yes|n|
 
-## 辅助按键
+## Auxiliary Keys
 
-|按键|解释|举例|
+|key|explanation|example|
 |-|-|-|
-|键盘上方的数字|切换操作对象|比如按`2`，控制`car2`|
-|Tab|展示更多信息|-|
+|Number above keyboard|switch operation object|for example, press `2` to control `car2`|
+|Tab|shows more information|-|
 
-## Record Player的按键
+## Record Player's keys
 
-`Record Player`可以用来复现之前的游戏，更多信息请参考[record_player.md](./record_player.md)
+`Record Player` can be used to replay previous games, for more information see [record_player.md](. /record_player.md)
 
-|按键|解释|
+|keys|explain|
 |-|-|
-|Tab|展示更多信息|
-|←|后退|
-|→|快进|
-|space|暂停|
+|Tab|Show more information|
+|←|Back|
+|→|fast-forward|
+|space|pause|

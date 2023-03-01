@@ -1,29 +1,29 @@
-# 参数格式说明
+# The parameter format is explained
 
-许多参数使用数组表示，需要对应的引索才能知道每位代表什么，这是此手册存在的意义
+Many of the parameters are represented as arrays and need to be referenced in order to know what each one represents, which is why this manual exists
 
-注意：`kernal`和`rmaics`的参数命名方式不完全相同
+Note: `kernal` and `rmaics` parameters are not named in exactly the same way
 
-|rmaics|kernal|含义|
+|rmaics|kernal|meaning|
 |-|-|-|
-|[state](#state)||总状态|
-|[agents](#agents)|[cars](#agents)|车的状态|
-|[compet](#compet)|[compet_info](#compet)|比赛信息|
-|[detect](#detect)|[detect](#detect)|激光雷达能检测到的车|
-|[vision](#vision)|[vision](#vision)|摄像头能看到的车|
-|[actions](#actions)|[orders](#actions)|控制车的指令|
-|[g_map](#g_map)|[g_map](#g_map)|地图信息|
-|[areas](#areas)|[areas](#areas)|区域信息|
-|[barriers](#barriers)|[barriers](#barriers)|障碍物信息|
-||[acts](#acts)|更底层的动作|
+|[state](#state)||total state|
+|[agents](#agents)|[cars](#agents)||state of the car|
+|[compet](#compet)|[compet_info](#compet)|race information|
+|[detect](#detect)|[detect](#detect)|Lidar detectable cars|
+|[vision](#vision)|[vision](#vision)|cars that can be seen by the camera|
+|[actions](#actions)|[orders](#actions)| commands to control the car|
+|[g_map](#g_map)|[g_map](#g_map)|map information|
+|[areas](#areas)|[areas](#areas)|area information|
+|[barriers](#barriers)|[barriers](#barriers)|obstacle information|
+||[actors](#acts)| lower level actions|
 
 ## state
 
-`state`为自定义的类，定义如下：
+``state`` is a custom class, defined as follows.
 
 ```python
 class state(object):
-    def __init__(self, time, agents, compet_info, done=False,  detect=None, vision=None):
+    def __init__(self, time, agents, compet_info, done=False, detect=None, vision=None):
         self.time = time
         self.agents = agents
         self.compet = compet_info
@@ -32,57 +32,57 @@ class state(object):
         self.vision = vision
 ```
 
-|名称|类型|范围|解释|
-|---|---|---|---|
-|time|int|0~180|比赛剩余时间|
-|[agents](#agents)|float|array|车的状态|
-|[compet](#compet)|int|array|比赛信息|
-|done|bool|0~1|比赛是否结束|
-|[detect](#detect)|int|array|能检测到哪些车|
-|[vision](#vision)|int|array|能看到那些车|
+|name|type|range|explanation|
+|--|--|--|--|--|
+|time|int|0~180|match time remaining|
+|[events](#agents)|float|array|state of the car|
+|[compet](#compet)|int|array|race information|
+|done|bool|0~1|whether the race is over|
+|[detect](#detect)|int|array|which cars can be detected|
+|[vision](#vision)|int|array|which cars can be seen|
 
 ## agents
 
-`agents`描述机器人的状态，在`kernal`中用`cars`表述，是一个二维数组(numpy.array)，类型为`float`，`shape`为（car_mun，15），`car_num`为机器人的数量，表中的类型为理论类型，实际由数组整体类型决定，单个机器人的状态格式如下：
+`agents` describes the state of a robot, expressed in `kernal` as `cars`, a two-dimensional array (numpy.array) of type `float`, `shape` as (car_mun, 15), `car_num` as the number of robots, the type in the table is theoretical and the actual is determined by the overall type of the array. The format of the state of an individual robot is as follows.
 
-|引索|名称|类型|范围|解释|
-|---|---|---|---|---|
-|0|owner|int|0~1|队伍，0：红方，1：蓝方|
-|1|x|float|0~800|x坐标[0]|
-|2|y|float|0~500|y坐标|
-|3|angle|float|-180~180|底盘绝对角度[1]|
-|4|yaw|float|-90~90|云台相对底盘角度|
-|5|heat|int|0~|枪口热度|
-|6|hp|int|0~2000|血量|
-|7|freeze_time|int|0~600|补弹完成剩余时间[2]，需3s|
-|8|is_supply|bool|0~1|0: 在补弹，1：不在补弹|
-|9|can_shoot|bool|0~1|决策频率高于出弹最高频率（10Hz）|
-|10|bullet|int|0~|剩余子弹量|
-|11|stay_time|int|0~1000|在防御加成区待的时间，需5s|
-|12|wheel_hit|int|0~|轮子撞墙的次数|
-|13|armor_hit|int|0~|装甲板撞墙的次数|
-|14|car_hit|int|0~|轮子或装甲板撞车的次数|
+|citation|name|type|range|explanation|
+|--|--|--|--|--|--|--|
+|0|owner|int|0~1|team, 0: red side, 1: blue side|
+|1|x|float|0~800|x coordinate[0]|
+|2|y|float|0~500|y-coordinates|
+|3|angle|float|-180~180|the absolute angle of the chassis[1]|
+|4|yaw|float|-90~90|the angle of the head relative to the chassis|
+|5|heat|int|0~|muzzle heat|
+|6|hp|int|0~2000|blood|
+|7|freeze_time|int|0~600|recharge time remaining [2], takes 3s|
+|8|is_supply|bool|0~1|0: in recharge, 1: not in recharge|
+|9|can_shoot|bool|0~1|The decision frequency is higher than the maximum outgoing frequency (10Hz)|
+|10|bullet|int|0~|remaining bullet count|
+|11|stay_time|int|0~1000|Time spent in defense bonus zone, takes 5s|
+|12|wheel_hit|int|0~|the number of times the wheel hits the wall|
+|13|armor_hit|int|0~|number of times the armor plate hit the wall|
+|14|car_hit|int|0~|the number of times a wheel or armor plate hit a car|
 
-[0] 以车的起始角落为原点，并使地图的全部落在正半轴
+[0] Take the starting corner of the car as the origin and make all of the map fall on the positive half-axis
 
-[1] 原点与上相同，极轴落在x轴正方向，向y轴正方向旋转的方向为正
+[1] with the origin the same as above and the polar axis falling on the positive x-axis and rotating in the positive direction towards the y-axis
 
-[2] 以epoch为单位计算，200epoch=1s
+[2] Calculated in epoch units, 200 epoch = 1s
 
 ## compet
 
-`compet`指比赛信息，全称`competition_information`，在`kernal`中用`compet_info`表示，二维数组，类型为`int`，所有参数理论类型也为`int`，`shape`为（2，4），具体如下：
+`compet` refers to competition information, full name `competition_information`, denoted by `compet_info` in `kernal`, two-dimensional array of type `int`, all parameters also of type `int`, `shape` is (2, 4), as follows.
 
-|引索0|引索1|名称|范围|解释|队伍|
-|-|-|-|-|-|-|
-|0|0|supply|0~2|供给剩余次数|红方|
-|0|1|bonus|0~1|加成剩余次数|红方|
-|0|2|stay_time(deprecated)|0~1000|弃用，转到`agents`中|红方|
-|0|3|bonus_time|0~6000|加成剩余时间|红方|
-|1|0|supply|0~2|供给剩余次数|蓝方|
-|1|1|bonus|0~1|加成剩余次数|蓝方|
-|1|2|stay_time(deprecated)|0~1000|弃用，转到`agents`中|蓝方|
-|1|3|bonus_time|0~6000|加成剩余时间|蓝方|
+|lead0|lead1|name|range|explanation|team|
+|-|-|-|-|-|-|-|
+|0|0|supply|0~2|supply remaining times|red|
+|0|1|bonus|0~1|plus_count_remaining|red|
+|0|2|stay_time(deprecated)|0~1000|discarded, go to `agents`|red|
+|0|3|bonus_time|0~6000|additional time remaining|red|
+|1|0|supply|0~2|supply_time_remaining|blue|
+|1|1|bonus|0~1|additional_time_remaining|blue|
+|1|2|stay_time(deprecated)|0~1000|discard, go to `agents`|blue|
+|1|3|bonus_time|0~6000|additional time remaining|blue|
 
 ## detect&vision
 
@@ -90,48 +90,48 @@ class state(object):
 
 ### vision
 
-`detect`指激光雷达能看到的车，`vision`指摄像头能看到的车，两者均用二维数组表示，`shape`为：（car_num, car_num），比如
+`detect` refers to cars visible to LiDAR, `vision` refers to cars visible to the camera, both are represented as two-dimensional arrays, `shape` is: (car_num, car_num), for example
 
 ```python
-#          0  1  2  3
+# 0 1 2 3
 detect = [[0, 1, 0, 0], # 0
           [0, 0, 1, 1], # 1
           [0, 0, 0, 0], # 2
           [1, 0, 0, 0]] # 3
 ```
 
-表示：
+Indicates.
 
-0号车能检测到1号车
+Car 0 can detect car 1
 
-1号车能检测到2号车和3号车
+Car 1 can detect cars 2 and 3
 
-2号车检测不到任何车
+Car 2 does not detect any cars
 
-3号车能检测到0号车
+Car 3 detects car 0
 
 ## actions
 
-`actions`为传给机器人的指令，在`kernal`中称作`orders`，二维数组，类型为`int`，所有参数理论类型也为`int`，`shape`为（car_num，8），单个指令格式如下
+`actions` are instructions passed to the robot, called `orders` in `kernal`, two-dimensional arrays of type `int`, all parameters also of type `int`, `shape` is (car_num, 8), individual instructions have the following format
 
-|引索|名称|范围|解释|手控按键|
+|citation|name|range|explanation|hand control button|
 |-|-|-|-|-|
-|0|x|-1~1|-1：后退，0：不动，1：前进[3]|s/w|
-|1|y|-1~1|-1：左移，0：不动，1：右移|q/e|
-|2|rotate|-1~1|底盘，-1：左转，0：不动，1：右转|a/d|
-|3|yaw|-1~1|云台，-1：左转，0：不动，1：右转|b/m|
-|4|shoot|0~1|是否射击，0：否，1：是|space|
-|5|supply|0~1|时候触发补给，0：否，1：是|f|
-|6|shoot_mode|0~1|射击模式，0：单发，1：连发|r|
-|7|auto_aim|0~1|是否启用自瞄，0：否，1：是|n|
+|0|x|-1~1|-1: backward, 0: no movement, 1: forward [3]|s/w|
+|1|y|-1~1|-1: move left, 0: don't move, 1: move right|q/e|
+|2|rotate|-1~1|chassis, -1: left turn, 0: no movement, 1: right turn|a/d|
+|3|yaw|-1~1|head, -1: turn left, 0: don't move, 1: turn right|b/m|
+|4|shoot|0~1|Whether to shoot, 0: no, 1: yes|space|
+|5|supply|0~1|When to trigger resupply, 0: No, 1: Yes|f|
+|6|shoot_mode|0~1|Shoot mode, 0: single shot, 1: burst|r|
+|7|auto_aim|0~1|Whether to enable self-targeting, 0: No, 1: Yes|n|
 
-[3] 会不断加速，x最大速度3m/s，y最大速度2m/s，实际上可以把这些按键理解为油门，控制是否加速
+[3] will constantly accelerate, x max speed 3m/s, y max speed 2m/s, you can actually interpret these buttons as a throttle, controlling whether to accelerate or not
 
-`串行多玩家模式`：可通过按键盘上方的数字改变操作对象，具体请参考[operation.md](./operation.md)
+`serial multi-player mode`: you can change the operation object by pressing the number above the keyboard, please refer to [operation.md](. /operation.md)
 
 ## g_map
 
-`g_map`是`game_map`的缩写，为自定义的类，定义如下
+`g_map` is short for `game_map`, a custom class defined as follows
 
 ```python
 class g_map(object):
@@ -142,66 +142,66 @@ class g_map(object):
         self.barriers = barriers
 ```
 
-|名称|类型|范围|解释|
-|---|---|---|---|
-|length|int|800|地图长度|
-|width|int|500|地图宽度|
-|[areas](#areas)|float|array|补给，起始和加成区域的位置信息|
-|[barriers](#barriers)|float|array|障碍物的位置信息|
+|name|type|range|explanation|
+|length|int|800|map length|
+|length|int|800|map length|
+|width|int|500|the width of the map|
+|[areas](#areas)|float|array|replenishment, starting and bonus area location information|
+|[barriers](#barriers)|float|array|Location information for obstacles|
 
 ## areas&barriers
 
-单个区域或障碍物的格式如下
+The format of a single area or obstacle is as follows
 
-|引索|名称|范围|解释|
-|---|---|---|---|
-|0|border_x0|0~800|左边界|
-|1|border_x1|0~800|右边界|
-|2|border_y0|0~500|上边界|
-|3|border_y1|0~500|下边界|
+|lead|name|range|explanation|
+|--|--|--|--|
+|0|border_x0|0~800|left border|
+|1|border_x1|0~800|right_border|
+|2|border_y0|0~500|upper border|
+|3|border_y1|0~500|bottom border|
 
-以地图左上角为原点
+Using the top left corner of the map as the origin
 
 ### areas
 
-`areas`为三维数组，`shape`为（2，4，4）
+`areas` is a 3D array, `shape` is (2, 4, 4)
 
-|引索0|引索1|名称|类型|队伍|
+|lead0|lead1|name|type|team|
 |-|-|-|-|-|
-|0|0|bonus|防御加成区|红方|
-|0|1|supply|补给区|红方|
-|0|2|start0|起始区|红方|
-|0|3|start1|起始区|红方|
-|1|0|bonus|防御加成区|蓝方|
-|1|1|supply|补给区|蓝方|
-|1|2|start0|起始区|蓝方|
-|1|3|start1|起始区|蓝方|
+|0|0|bonus|defence-plus-zone|red|
+|0|1|supply|supply zone|red side|
+|0|2|start0|Start Zone|Red|
+|0|3|start1|Start Zone|Red|
+|1|0|bonus|defense bonus zone|blue|
+|1|1|supply|supply zone|blue|
+|1|2|start0|starting zone|blue|
+|1|3|start1|starting zone|blue|
 
 ### barriers
 
-`barriers`为二维数组，`shape`为（7，4）
+`barriers` is a two-dimensional array and `shape` is (7, 4)
 
-|引索0|类型|
+|lead0|type|
 |-|-|
-|0|水平|
-|1|水平|
-|2|水平|
-|3|垂直|
-|4|垂直|
-|5|垂直|
-|6|垂直|
+|0|horizontal|
+|1|level|
+|2|horizontal|
+|3|vertical|
+|4|vertical|
+|5|vertical|
+|6|vertical|
 
 ## acts
 
-这个`acts`是`kernal`里的动作，与`rmaics`里的[`actions`](#actions)不同，本`acts`是一个较底层的action，类型`float`，`shape`为：（car_num，8）
+This `acts` is an action in `kernal`, unlike [`actions`](#actions) in `rmaics`, this `acts` is a lower-level action of type `float` with a `shape` of: (car_num, 8)
 
-|引索1|名称|解释|
+|citation1|name|explanation|
 |-|-|-|
-|0|rotate_speed|底盘旋转速度|
-|1|yaw_speed|云台旋转速度|
-|2|x_speed|前进后退速度|
-|3|y_speed|左右平移速度|
-|4|shoot|是否发射|
-|5|shoot_mutiple|是否连发|
-|6|supply|是否触发补给|
-|7|auto_aim|是否自动瞄准|
+|0|rotate_speed|Chassis_rotation_speed|
+|1|yaw_speed|head rotation speed|
+|2|x_speed|forward-backward speed|
+|3|y_speed|left/right pan speed|
+|4|shoot|whether to fire|
+|5|shoot_mutiple|whether to fire a burst|
+|6|supply|whether to trigger resupply|
+|7|auto_aim|whether to auto aim|

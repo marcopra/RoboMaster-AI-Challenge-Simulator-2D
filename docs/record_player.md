@@ -1,27 +1,27 @@
-# Record Player Manual
+# Recorder Manual
 
-`Record Player`可以用来复现之前的游戏
+The "Recorder" can be used to replay previous games
 
-## 一、保存游戏记忆
+## I. Saving game memories
 
 ```python
 from rmaics import rmaics
 game = rmaics(agent_num=4, render=True)
 game.reset()
-# only when render = True
+# Only if render=True
 game.play()
 
-game.save_record('./records/record0.npy')
+game.save_record('. /records/record0.npy')
 ```
 
-注意：用鼠标点击游戏窗口的关闭图标，`Windows`下为右上角的红色`×`，能够正常结束游戏，且内存里的游戏记忆不会被清空
+Note: Clicking with the mouse on the close icon in the game window, the red "x" under "Windows" in the top right corner, will end the game normally and the game's memory will not be emptied.
 
-## 二、复现游戏
+## II. Re-create the game
 
 ```python
 from kernal import record_player
 player = record_player()
-player.play('./records/record0.npy')
+player.play('. /records/record0.npy')
 ```
 
-可使用`←`，`→`键控制播放进度，用`space`暂停，具体请参见[operation.md](./operation.md)
+You can use the '←' and '→' keys to control the playback progress and the 'space' key to pause, see [operation.md](. /operation.md)
