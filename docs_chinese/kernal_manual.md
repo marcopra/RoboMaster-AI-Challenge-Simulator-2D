@@ -1,4 +1,4 @@
-# Kernal Manual
+# kernel Manual
 
 ## 一、基本信息
 
@@ -37,7 +37,7 @@ h. 当车的中心点在防御加成区的方形区域内时，会进行防御�
 
 ## 二、可改变参数
 
-在`kernal`类的`__init__`函数中，有一些可以视场地等环境改变的量，如下
+在`kernel`类的`__init__`函数中，有一些可以视场地等环境改变的量，如下
 
 ```python
         self.bullet_speed = 12.5 # 子弹速度，单位为pixel
@@ -53,8 +53,8 @@ h. 当车的中心点在防御加成区的方形区域内时，会进行防御�
 
 ### 1、调用地图信息
 
-`kernal.get_map()`，返回`g_map`，参数格式见：[params.md](./params.md/#g_map)
+`kernel.get_map()`，返回`g_map`，参数格式见：[params.md](./params.md/#g_map)
 
 ### 2、设置车的坐标
 
-`kernal.set_car_loc(n, loc)`，`n`为车的编号，0~3，`loc`为车的坐标，二维数组，无返回
+`kernel.set_car_loc(n, loc)`，`n`为车的编号，0~3，`loc`为车的坐标，二维数组，无返回

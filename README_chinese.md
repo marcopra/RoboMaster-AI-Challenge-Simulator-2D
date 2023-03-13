@@ -19,9 +19,9 @@ numpy
 该模拟器由两个层次组成：
 
 >上层的封装类`rmaics`  
->底层的实际执行类`kernal`
+>底层的实际执行类`kernel`
 
-使用者需要定义`rmaisc`类中的`get_observation`和`get_reward`函数，来定义观测值和奖励值；而`kernal`类只负责物理环境和裁判系统的仿真。故训练网络时，直接与使用者打交道的为`rmaisc`类
+使用者需要定义`rmaisc`类中的`get_observation`和`get_reward`函数，来定义观测值和奖励值；而`kernel`类只负责物理环境和裁判系统的仿真。故训练网络时，直接与使用者打交道的为`rmaisc`类
 
 ### 2、内容引索
 
@@ -29,7 +29,7 @@ numpy
 
 `rmaics`使用说明：[rmaics_manual.md](./docs/rmaics_manual.md)
 
-`kernal`使用说明：[kernal_manual.md](./docs/kernal_manual.md)
+`kernel`使用说明：[kernel_manual.md](./docs/kernel_manual.md)
 
 `record player`使用说明：[record_player.md](./docs/record_player.md)
 
@@ -37,10 +37,10 @@ numpy
 
 参数格式说明：[params.md](./docs/params.md)
 
-`kernal`开发指南：[develop.md](./docs/develop.md)
+`kernel`开发指南：[develop.md](./docs/develop.md)
 
 ### 3、其他
 
-`kernal`本意想表达`kernel`，意思是核心，但不小心写错了
+`kernel`本意想表达`kernel`，意思是核心，但不小心写错了
 
 

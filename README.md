@@ -19,9 +19,9 @@ numpy
 The simulator consists of two layers.
 
 > the top-level wrapper class `rmaics`  
-> the actual execution class `kernal` at the bottom level
+> the actual execution class `kernel` at the bottom level
 
-The user needs to define the `get_observation` and `get_reward` functions in the `rmaisc` class to define the observation and reward values; while the `kernal` class is only responsible for the physical environment and the simulation of the referee system. Therefore, when training the network, it is the `rmaisc` class that deals directly with the user
+The user needs to define the `get_observation` and `get_reward` functions in the `rmaisc` class to define the observation and reward values; while the `kernel` class is only responsible for the physical environment and the simulation of the referee system. Therefore, when training the network, it is the `rmaisc` class that deals directly with the user
 
 ### 2. Content references
 
@@ -29,7 +29,7 @@ Please follow these links to find the content you need
 
 Instructions for using `rmaics`: [rmaics_manual.md](./docs/rmaics_manual.md)
 
-`kernal` usage notes: [kernal_manual.md](./docs/kernal_manual.md)
+`kernel` usage notes: [kernel_manual.md](./docs/kernel_manual.md)
 
 `record player` usage notes: [record_player.md](./docs/record_player.md)
 
@@ -37,8 +37,8 @@ Control command description: [operation.md](./docs/operation.md)
 
 Parameter format description: [params.md](./docs/params.md)
 
-`kernal` development guide: [develop.md](./docs/develop.md) 
+`kernel` development guide: [develop.md](./docs/develop.md) 
 
 ### 3. Other
 
-`kernal` was intended to mean `kernel`, meaning core, but was accidentally misspelled
+`kernel` was intended to mean `kernel`, meaning core, but was accidentally misspelled

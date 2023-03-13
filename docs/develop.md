@@ -1,4 +1,4 @@
-# Kernal Development Guide
+# kernel Development Guide
 
 ## I. Notes on development
 
@@ -6,9 +6,9 @@ When developing, note the parameter format description: [params.md](./params.md)
 
 ## II. Introduction to the structure
 
-The core function of `kernal` is: `one_epoch`, which means it will run for one cycle, and in one cycle it will call: `move_car`, `move_bullet`, and at the same time it will update the view information, race information, etc., and update the game screen (if the screen is displayed)
+The core function of `kernel` is: `one_epoch`, which means it will run for one cycle, and in one cycle it will call: `move_car`, `move_bullet`, and at the same time it will update the view information, race information, etc., and update the game screen (if the screen is displayed)
 
-There are two functions that can be called on `one_epoch`: `step` and `play`. What `step` does is to get the instructions `orders` passed in by the user, convert `orders` to `acts` and then run for 10 cycles; the only difference with `play` is that it will keep running and then get `orders` from the keyboard once every 10 cycles. Note: `acts` in `kernal` is different from `actions` in `rmaics`, while `orders` in `kernal` is the same as `actions` in `rmaics`
+There are two functions that can be called on `one_epoch`: `step` and `play`. What `step` does is to get the instructions `orders` passed in by the user, convert `orders` to `acts` and then run for 10 cycles; the only difference with `play` is that it will keep running and then get `orders` from the keyboard once every 10 cycles. Note: `acts` in `kernel` is different from `actions` in `rmaics`, while `orders` in `kernel` is the same as `actions` in `rmaics`
 
 ## III. Areas for improvement
 
@@ -49,7 +49,7 @@ Use numba or Cython
 
 ### 2. Parallel matches
 
-Multiple simultaneous matches at the ``kernal'' level, so that you don't have to dedicate multiple processes, which can improve learning speed
+Multiple simultaneous matches at the ``kernel'' level, so that you don't have to dedicate multiple processes, which can improve learning speed
 
 ### 3. Online matchmaking
 
@@ -65,7 +65,7 @@ The simulator is not the real world after all, adding some randomness can help i
 
 #### Operating Instructions
 
-Add some errors to `self.acts` at the beginning of the function `move_car`; for details on `acts`, see [params.md](./params.md), note that it is the `acts` in `kernal`
+Add some errors to `self.acts` at the beginning of the function `move_car`; for details on `acts`, see [params.md](./params.md), note that it is the `acts` in `kernel`
 
 ### 5. Field of view
 

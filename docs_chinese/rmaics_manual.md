@@ -15,10 +15,10 @@
         return rewards
 ```
 
-如需使用地图信息，可调用`kernal`的`get_map`函数，将会返回地图信息，返回数据的格式见[params.md](./params.md)。例如
+如需使用地图信息，可调用`kernel`的`get_map`函数，将会返回地图信息，返回数据的格式见[params.md](./params.md)。例如
 
 ```python
-game = kernal(car_num=1, render=True)
+game = kernel(car_num=1, render=True)
 g_map = game.get_map()
 ```
 
@@ -58,7 +58,7 @@ game.play()
 
 ### 4、保存记忆
 
-这里的记忆指的是`kernal`的记忆，记忆将被保存为[npy](https://stackoverflow.com/questions/4090080/what-is-the-way-data-is-stored-in-npy)文件，里面存储着用来复现游戏的所需信息，如何播放请参考[record_player](./record_player.md)，保存方式如下
+这里的记忆指的是`kernel`的记忆，记忆将被保存为[npy](https://stackoverflow.com/questions/4090080/what-is-the-way-data-is-stored-in-npy)文件，里面存储着用来复现游戏的所需信息，如何播放请参考[record_player](./record_player.md)，保存方式如下
 
 ```python
 game.save_record(file='./records/record.npy')

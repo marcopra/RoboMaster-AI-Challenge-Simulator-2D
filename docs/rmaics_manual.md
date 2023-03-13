@@ -15,10 +15,10 @@ First complete the `get_observation` and `get_reward` parts of the wrapper class
         return rewards
 ```
 
-To use the map information, call the `get_map` function of `kernal`, which will return the map information in the format [params.md](. /params.md). For example
+To use the map information, call the `get_map` function of `kernel`, which will return the map information in the format [params.md](./params.md). For example:
 
 ```python
-game = kernal(car_num=1, render=True)
+game = kernel(car_num=1, render=True)
 g_map = game.get_map()
 ```
 
@@ -58,7 +58,7 @@ game.play()
 
 ### 4. Saving memory
 
-The memory here refers to `kernal` memory, which will be saved as a [npy](https://stackoverflow.com/questions/4090080/what-is-the-way-data-is-stored-in-npy) file containing the information needed to reproduce the game. Please refer to [record_player](. /record_player.md), which is saved as follows
+The memory here refers to `kernel` memory, which will be saved as a [npy](https://stackoverflow.com/questions/4090080/what-is-the-way-data-is-stored-in-npy) file containing the information needed to reproduce the game. Please refer to [record_player](. /record_player.md), which is saved as follows
 
 ```python
 game.save_record(file='. /records/record.npy')

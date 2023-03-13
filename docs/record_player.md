@@ -19,7 +19,7 @@ Note: Clicking with the mouse on the close icon in the game window, the red "x" 
 ## II. Re-create the game
 
 ```python
-from kernal import record_player
+from kernel import record_player
 player = record_player()
 player.play('. /records/record0.npy')
 ```

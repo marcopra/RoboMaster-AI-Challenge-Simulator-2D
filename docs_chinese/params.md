@@ -2,9 +2,9 @@
 
 许多参数使用数组表示，需要对应的引索才能知道每位代表什么，这是此手册存在的意义
 
-注意：`kernal`和`rmaics`的参数命名方式不完全相同
+注意：`kernel`和`rmaics`的参数命名方式不完全相同
 
-|rmaics|kernal|含义|
+|rmaics|kernel|含义|
 |-|-|-|
 |[state](#state)||总状态|
 |[agents](#agents)|[cars](#agents)|车的状态|
@@ -43,7 +43,7 @@ class state(object):
 
 ## agents
 
-`agents`描述机器人的状态，在`kernal`中用`cars`表述，是一个二维数组(numpy.array)，类型为`float`，`shape`为（car_mun，15），`car_num`为机器人的数量，表中的类型为理论类型，实际由数组整体类型决定，单个机器人的状态格式如下：
+`agents`描述机器人的状态，在`kernel`中用`cars`表述，是一个二维数组(numpy.array)，类型为`float`，`shape`为（car_mun，15），`car_num`为机器人的数量，表中的类型为理论类型，实际由数组整体类型决定，单个机器人的状态格式如下：
 
 |引索|名称|类型|范围|解释|
 |---|---|---|---|---|
@@ -71,7 +71,7 @@ class state(object):
 
 ## compet
 
-`compet`指比赛信息，全称`competition_information`，在`kernal`中用`compet_info`表示，二维数组，类型为`int`，所有参数理论类型也为`int`，`shape`为（2，4），具体如下：
+`compet`指比赛信息，全称`competition_information`，在`kernel`中用`compet_info`表示，二维数组，类型为`int`，所有参数理论类型也为`int`，`shape`为（2，4），具体如下：
 
 |引索0|引索1|名称|范围|解释|队伍|
 |-|-|-|-|-|-|
@@ -112,7 +112,7 @@ detect = [[0, 1, 0, 0], # 0
 
 ## actions
 
-`actions`为传给机器人的指令，在`kernal`中称作`orders`，二维数组，类型为`int`，所有参数理论类型也为`int`，`shape`为（car_num，8），单个指令格式如下
+`actions`为传给机器人的指令，在`kernel`中称作`orders`，二维数组，类型为`int`，所有参数理论类型也为`int`，`shape`为（car_num，8），单个指令格式如下
 
 |引索|名称|范围|解释|手控按键|
 |-|-|-|-|-|
@@ -193,7 +193,7 @@ class g_map(object):
 
 ## acts
 
-这个`acts`是`kernal`里的动作，与`rmaics`里的[`actions`](#actions)不同，本`acts`是一个较底层的action，类型`float`，`shape`为：（car_num，8）
+这个`acts`是`kernel`里的动作，与`rmaics`里的[`actions`](#actions)不同，本`acts`是一个较底层的action，类型`float`，`shape`为：（car_num，8）
 
 |引索1|名称|解释|
 |-|-|-|

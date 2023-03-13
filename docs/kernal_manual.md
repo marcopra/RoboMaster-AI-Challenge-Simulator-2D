@@ -1,4 +1,4 @@
-# Kernal Manual
+# kernel Manual
 
 ## I. Basic information
 
@@ -37,7 +37,7 @@ h. When the centre of the vehicle is within the square area of the defence bonus
 
 ## II. Changeable parameters
 
-In the `__init__` function of the `kernal` class, there are a number of quantities that can be changed depending on the environment such as the field, as follows
+In the `__init__` function of the `kernel` class, there are a number of quantities that can be changed depending on the environment such as the field, as follows
 
 ```python
         self.bullet_speed = 12.5 # bullet speed in pixel
@@ -53,8 +53,8 @@ In the `__init__` function of the `kernal` class, there are a number of quantiti
 
 ### 1. Call map information
 
-`kernal.get_map()`, returns `g_map`, see the parameter format: [params.md](. /params.md/#g_map)
+`kernel.get_map()`, returns `g_map`, see the parameter format: [params.md](. /params.md/#g_map)
 
 ### 2. Set the coordinates of the car
 
-`kernal.set_car_loc(n, loc)`, `n` is the number of the car, 0~3, `loc` is the coordinates of the car, 2-dimensional array, no return
+`kernel.set_car_loc(n, loc)`, `n` is the number of the car, 0~3, `loc` is the coordinates of the car, 2-dimensional array, no return
