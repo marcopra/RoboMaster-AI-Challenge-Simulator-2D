@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 from rmaics import rmaics
 from kernel import record_player
+from stable_baselines3.common.env_checker import check_env
 
 #%%
-game = rmaics(agent_num=4, render=True)
+game = rmaics(agent_num=2,  render=True)
 game.reset()
 # only when render = True
 game.play()

@@ -19,6 +19,32 @@ class state(object):
         self.done = done
         self.detect = detect
         self.vision = vision
+    
+    def get_params(self):
+        """
+            RETURNS
+
+            time : int
+                match time remaining
+            
+            events: array
+                state of the cars
+            
+            compet: array
+                race information
+
+            done: bool
+                wheter the race is over
+            
+            detect: array
+                which car can be detected
+            
+            vision: array
+                which car can be seen
+
+        """
+        return self.time, self.agents, self.compet, self.done, self.detect, self.vision
+    
 
 class record(object):
     def __init__(self, time, cars, compet_info, detect, vision, bullets):
