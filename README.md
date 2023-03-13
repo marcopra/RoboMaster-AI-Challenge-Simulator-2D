@@ -39,6 +39,3 @@ Parameter format description: [params.md](./docs/params.md)
 
 `kernel` development guide: [develop.md](./docs/develop.md) 
 
-### 3. Other
-
-`kernel` was intended to mean `kernel`, meaning core, but was accidentally misspelled
