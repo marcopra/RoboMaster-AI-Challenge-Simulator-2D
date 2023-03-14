@@ -47,7 +47,7 @@ The original repository is [here](https://github.com/LoveThinkinghard/RoboMaster
 
 Here, we list some other works related to this simulator. These can be used as a starting point or a beseline for comparing our work.
 Other works:
-* [Repo 1](https://github.com/Yazhou-Z/ICRA-simulator) here is already implemented the RL algorithm using [Stable_baselines3](https://stable-baselines3.readthedocs.io/en/master/).
+* [Repo 1](https://github.com/Yazhou-Z/ICRA-simulator): here, it has already been implemented the RL algorithm using [Stable_baselines3](https://stable-baselines3.readthedocs.io/en/master/).
 * [Repo 2](https://github.com/cogito233/RoboMaster-AI-Challenge-Simulator-2D): [kernal_shortest_path.py](https://github.com/cogito233/RoboMaster-AI-Challenge-Simulator-2D/blob/master/kernal_shortest_path.py) seems interesting.
 
 ## IV. Possible ideas

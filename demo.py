@@ -5,6 +5,7 @@ from stable_baselines3.common.env_checker import check_env
 
 #%%
 game = rmaics(agent_num=2,  render=True)
+check_env(game)
 game.reset()
 # only when render = True
 game.play()
